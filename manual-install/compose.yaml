@@ -78,7 +78,7 @@ services:
       - nextcloud_aio_database:/var/lib/postgresql/data:rw
       - nextcloud_aio_database_dump:/mnt/data:rw
     environment:
-      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_PASSWORD=${NEXTCLOUD_AIO_DATABASE_PASSWORD}
       - POSTGRES_DB=nextcloud_database
       - POSTGRES_USER=nextcloud
       - AIO_LOG_LEVEL
@@ -134,23 +134,23 @@ services:
       - NEXTCLOUD_HOST=nextcloud-aio-nextcloud
       - POSTGRES_HOST=nextcloud-aio-database
       - POSTGRES_PORT=5432
-      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_PASSWORD=${NEXTCLOUD_AIO_DATABASE_PASSWORD}
       - POSTGRES_DB=nextcloud_database
       - POSTGRES_USER=nextcloud
       - REDIS_HOST=nextcloud-aio-redis
       - REDIS_PORT=6379
-      - REDIS_HOST_PASSWORD=${REDIS_PASSWORD}
+      - REDIS_HOST_PASSWORD=${NEXTCLOUD_AIO_REDIS_PASSWORD}
       - APACHE_HOST=nextcloud-aio-apache
       - APACHE_PORT
       - NC_DOMAIN
       - ADMIN_USER=admin
-      - ADMIN_PASSWORD=${NEXTCLOUD_PASSWORD}
+      - ADMIN_PASSWORD=${NEXTCLOUD_AIO_NEXTCLOUD_PASSWORD}
       - NEXTCLOUD_DATA_DIR=/mnt/ncdata
       - OVERWRITEHOST=${NC_DOMAIN}
       - OVERWRITEPROTOCOL=https
       - TURN_SECRET
       - SIGNALING_SECRET
-      - ONLYOFFICE_SECRET
+      - ONLYOFFICE_SECRET=${NEXTCLOUD_AIO_ONLYOFFICE_SECRET}
       - AIO_LOG_LEVEL
       - NEXTCLOUD_MOUNT
       - CLAMAV_ENABLED
@@ -182,10 +182,10 @@ services:
       - TALK_RECORDING_ENABLED
       - RECORDING_SECRET
       - TALK_RECORDING_HOST=nextcloud-aio-talk-recording
-      - FULLTEXTSEARCH_PASSWORD
+      - FULLTEXTSEARCH_PASSWORD=${NEXTCLOUD_AIO_FULLTEXTSEARCH_PASSWORD}
       - REMOVE_DISABLED_APPS
       - IMAGINARY_SECRET
-      - WHITEBOARD_SECRET
+      - WHITEBOARD_SECRET=${NEXTCLOUD_AIO_WHITEBOARD_SECRET}
       - WHITEBOARD_ENABLED
     stop_grace_period: 600s
     restart: unless-stopped
@@ -231,7 +231,7 @@ services:
     expose:
       - "6379"
     environment:
-      - REDIS_HOST_PASSWORD=${REDIS_PASSWORD}
+      - REDIS_HOST_PASSWORD=${NEXTCLOUD_AIO_REDIS_PASSWORD}
       - AIO_LOG_LEVEL
       - TZ=${TIMEZONE}
     volumes:
@@ -302,7 +302,7 @@ services:
       - AIO_LOG_LEVEL
       - TZ=${TIMEZONE}
       - TALK_PORT
-      - INTERNAL_SECRET=${TALK_INTERNAL_SECRET}
+      - INTERNAL_SECRET=${NEXTCLOUD_AIO_TALK_INTERNAL_SECRET}
     restart: unless-stopped
     profiles:
       - talk
@@ -335,7 +335,7 @@ services:
       - AIO_LOG_LEVEL
       - TZ=${TIMEZONE}
       - RECORDING_SECRET
-      - INTERNAL_SECRET=${TALK_INTERNAL_SECRET}
+      - INTERNAL_SECRET=${NEXTCLOUD_AIO_TALK_INTERNAL_SECRET}
     volumes:
       - nextcloud_aio_talk_recording:/tmp:rw
     shm_size: 2147483648
@@ -398,7 +398,7 @@ services:
       - TZ=${TIMEZONE}
       - JWT_ENABLED=true
       - JWT_HEADER=AuthorizationJwt
-      - JWT_SECRET=${ONLYOFFICE_SECRET}
+      - JWT_SECRET=${NEXTCLOUD_AIO_ONLYOFFICE_SECRET}
     volumes:
       - nextcloud_aio_onlyoffice:/var/lib/onlyoffice:rw
     restart: unless-stopped
@@ -460,7 +460,7 @@ services:
       - indices.fielddata.cache.size=20%
       - indices.memory.index_buffer_size=20%
       - thread_pool.write.queue_size=1000
-      - FULLTEXTSEARCH_PASSWORD
+      - FULLTEXTSEARCH_PASSWORD=${NEXTCLOUD_AIO_FULLTEXTSEARCH_PASSWORD}
     volumes:
       - nextcloud_aio_elasticsearch:/usr/share/elasticsearch/data:rw
     restart: unless-stopped
@@ -488,11 +488,11 @@ services:
       - AIO_LOG_LEVEL
       - TZ=${TIMEZONE}
       - NEXTCLOUD_URL=https://${NC_DOMAIN}
-      - JWT_SECRET_KEY=${WHITEBOARD_SECRET}
+      - JWT_SECRET_KEY=${NEXTCLOUD_AIO_WHITEBOARD_SECRET}
       - STORAGE_STRATEGY=redis
       - REDIS_HOST=nextcloud-aio-redis
       - REDIS_PORT=6379
-      - REDIS_HOST_PASSWORD=${REDIS_PASSWORD}
+      - REDIS_HOST_PASSWORD=${NEXTCLOUD_AIO_REDIS_PASSWORD}
       - BACKUP_DIR=/tmp
     restart: unless-stopped
     profiles:
