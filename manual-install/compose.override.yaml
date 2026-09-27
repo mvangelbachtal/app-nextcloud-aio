@@ -1,0 +1,18 @@
+services:
+  nextcloud-aio-apache:
+    networks:
+      - default
+      - proxy
+      - prometheus
+    environment:
+      - VIRTUAL_HOST=cloud.mv-angelbachtal.de
+      - LETSENCRYPT_HOST=cloud.mv-angelbachtal.de
+  nextcloud-aio-fulltextsearch:
+    mem_limit: 1024M
+
+networks:
+  proxy:
+    external: true
+  prometheus:
+    external: true
+

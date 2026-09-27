@@ -1,0 +1,5 @@
+name: nextcloud-aio
+working_dir: manual-install
+compose_files:
+  - compose.yaml
+  - compose.override.yaml

@@ -1,6 +1,9 @@
 .DS_Store
 .idea/
 *.iml
+secrets.env
+secrets.env.*
+!secrets.env.example
 
 /php/data/*
 /php/session/*
