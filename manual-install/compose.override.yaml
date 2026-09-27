@@ -7,9 +7,37 @@ services:
     environment:
       - VIRTUAL_HOST=cloud.mv-angelbachtal.de
       - LETSENCRYPT_HOST=cloud.mv-angelbachtal.de
+  nextcloud-aio-database:
+    environment:
+      POSTGRES_PASSWORD: ${NEXTCLOUD_AIO_DATABASE_PASSWORD}
+  nextcloud-aio-nextcloud:
+    environment:
+      POSTGRES_PASSWORD: ${NEXTCLOUD_AIO_DATABASE_PASSWORD}
+      REDIS_HOST_PASSWORD: ${NEXTCLOUD_AIO_REDIS_PASSWORD}
+      ADMIN_PASSWORD: ${NEXTCLOUD_AIO_NEXTCLOUD_PASSWORD}
+      ONLYOFFICE_SECRET: ${NEXTCLOUD_AIO_ONLYOFFICE_SECRET}
+      FULLTEXTSEARCH_PASSWORD: ${NEXTCLOUD_AIO_FULLTEXTSEARCH_PASSWORD}
+      WHITEBOARD_SECRET: ${NEXTCLOUD_AIO_WHITEBOARD_SECRET}
+  nextcloud-aio-redis:
+    environment:
+      REDIS_HOST_PASSWORD: ${NEXTCLOUD_AIO_REDIS_PASSWORD}
+  nextcloud-aio-talk:
+    environment:
+      INTERNAL_SECRET: ${NEXTCLOUD_AIO_TALK_INTERNAL_SECRET}
+  nextcloud-aio-talk-recording:
+    environment:
+      INTERNAL_SECRET: ${NEXTCLOUD_AIO_TALK_INTERNAL_SECRET}
+  nextcloud-aio-onlyoffice:
+    environment:
+      JWT_SECRET: ${NEXTCLOUD_AIO_ONLYOFFICE_SECRET}
   nextcloud-aio-fulltextsearch:
+    environment:
+      FULLTEXTSEARCH_PASSWORD: ${NEXTCLOUD_AIO_FULLTEXTSEARCH_PASSWORD}
     mem_limit: 1024M
-
+  nextcloud-aio-whiteboard:
+    environment:
+      JWT_SECRET_KEY: ${NEXTCLOUD_AIO_WHITEBOARD_SECRET}
+      REDIS_HOST_PASSWORD: ${NEXTCLOUD_AIO_REDIS_PASSWORD}
 networks:
   proxy:
     external: true
