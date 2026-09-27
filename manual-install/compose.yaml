@@ -302,7 +302,7 @@ services:
       - AIO_LOG_LEVEL
       - TZ=${TIMEZONE}
       - TALK_PORT
-      - INTERNAL_SECRET
+      - INTERNAL_SECRET=${TALK_INTERNAL_SECRET}
     restart: unless-stopped
     profiles:
       - talk
@@ -335,7 +335,7 @@ services:
       - AIO_LOG_LEVEL
       - TZ=${TIMEZONE}
       - RECORDING_SECRET
-      - INTERNAL_SECRET
+      - INTERNAL_SECRET=${TALK_INTERNAL_SECRET}
     volumes:
       - nextcloud_aio_talk_recording:/tmp:rw
     shm_size: 2147483648
