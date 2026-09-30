@@ -1,5 +1,7 @@
 name: nextcloud-aio
 working_dir: manual-install
+environment:
+  COMPOSE_PROFILES: collabora,talk,imaginary,fulltextsearch,whiteboard
 compose_files:
   - compose.yaml
   - compose.override.yaml
