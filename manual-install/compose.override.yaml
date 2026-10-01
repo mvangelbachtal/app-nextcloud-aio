@@ -7,6 +7,9 @@ services:
     environment:
       - VIRTUAL_HOST=cloud.mv-angelbachtal.de
       - LETSENCRYPT_HOST=cloud.mv-angelbachtal.de
+  nextcloud-aio-collabora:
+    healthcheck:
+      test: ["CMD", "/usr/bin/coolwsd", "--probe", "--use-env-vars"]
   nextcloud-aio-database:
     environment:
       POSTGRES_PASSWORD: ${NEXTCLOUD_AIO_DATABASE_PASSWORD}
