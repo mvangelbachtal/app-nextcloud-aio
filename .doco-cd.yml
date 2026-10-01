@@ -1,7 +1,6 @@
 name: nextcloud-aio
 working_dir: manual-install
 environment:
-  COMPOSE_PROFILES: "collabora,talk,imaginary,fulltextsearch,whiteboard"
   AIO_LOG_LEVEL: "warn"
   TIMEZONE: "Europe/Berlin"
   NC_DOMAIN: "cloud.mv-angelbachtal.de"
@@ -36,6 +35,12 @@ environment:
   REMOVE_DISABLED_APPS: "yes"
   UPDATE_NEXTCLOUD_APPS: "no"
   WATCHTOWER_DOCKER_SOCKET_PATH: "/var/run/docker.sock"
+profiles:
+  - collabora
+  - talk
+  - imaginary
+  - fulltextsearch
+  - whiteboard
 compose_files:
   - compose.yaml
   - compose.override.yaml
