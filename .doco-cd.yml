@@ -9,12 +9,15 @@ environment:
   IMAGINARY_ENABLED: "yes"
   ONLYOFFICE_ENABLED: "no"
   TALK_ENABLED: "yes"
+  TALK_PORT: "3478"
   TALK_RECORDING_ENABLED: "no"
   WHITEBOARD_ENABLED: "yes"
   APACHE_IP_BINDING: "127.0.0.1"
   APACHE_PORT: "80"
   NEXTCLOUD_ADDITIONAL_APKS: "imagemagick ocrmypdf tesseract-ocr-data-eng tesseract-ocr-data-deu"
   NEXTCLOUD_MOUNT: "/mnt"
+  NEXTCLOUD_DATADIR: "nextcloud_aio_nextcloud_data"
+  NEXTCLOUD_TRUSTED_CACERTS_DIR: "/usr/local/share/ca-certificates/my-custom-ca"
 compose_files:
   - compose.yaml
   - compose.override.yaml
