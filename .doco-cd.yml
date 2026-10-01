@@ -1,7 +1,19 @@
 name: nextcloud-aio
 working_dir: manual-install
 environment:
-  COMPOSE_PROFILES: collabora,talk,imaginary,fulltextsearch,whiteboard
+  COMPOSE_PROFILES: "collabora,talk,imaginary,fulltextsearch,whiteboard"
+  NC_DOMAIN: "cloud.mv-angelbachtal.de"
+  CLAMAV_ENABLED: "no"
+  COLLABORA_ENABLED: "yes"
+  FULLTEXTSEARCH_ENABLED: "yes"
+  IMAGINARY_ENABLED: "yes"
+  ONLYOFFICE_ENABLED: "no"
+  TALK_ENABLED: "yes"
+  TALK_RECORDING_ENABLED: "no"
+  WHITEBOARD_ENABLED: "yes"
+  APACHE_IP_BINDING: "127.0.0.1"
+  APACHE_PORT: "80"
+  NEXTCLOUD_ADDITIONAL_APKS: "imagemagick ocrmypdf tesseract-ocr-data-eng tesseract-ocr-data-deu"
 compose_files:
   - compose.yaml
   - compose.override.yaml
