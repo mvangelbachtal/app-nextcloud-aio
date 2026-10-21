@@ -1,5 +1,6 @@
 name: nextcloud-aio
 working_dir: manual-install
+force_image_pull: true
 environment:
   AIO_LOG_LEVEL: "warn"
   TIMEZONE: "Europe/Berlin"
