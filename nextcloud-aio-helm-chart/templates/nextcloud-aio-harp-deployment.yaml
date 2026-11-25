@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kompose.version: 1.38.0 (a8f5d1cbd)
+    kompose.version: 1.39.0 (f90c0f540)
   labels:
     io.kompose.service: nextcloud-aio-harp
   name: nextcloud-aio-harp
@@ -21,7 +21,7 @@ spec:
   template:
     metadata:
       annotations:
-        kompose.version: 1.38.0 (a8f5d1cbd)
+        kompose.version: 1.39.0 (f90c0f540)
       labels:
         io.kompose.service: nextcloud-aio-harp
     spec:
@@ -48,7 +48,7 @@ spec:
               value: https://{{ .Values.NC_DOMAIN }}
             - name: TZ
               value: "{{ .Values.TIMEZONE }}"
-          image: ghcr.io/nextcloud-releases/aio-harp:20261021_180331
+          image: ghcr.io/nextcloud-releases/aio-harp:20261119_161514
           readinessProbe:
             exec:
               command:
